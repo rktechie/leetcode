@@ -23,6 +23,7 @@ public class LongestCommonPrefix {
             return strs[0];
         }
 
+        // We compare 1st String with all the other strings.
         for (int i = 0; i < strs[0].length(); i++) {
             for (int j = 1; j < numOfStrings; j++) {
                 // If any one of the string is smaller than our base string or
