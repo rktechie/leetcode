@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /*
@@ -61,4 +62,5 @@ public class WordBreak {
         hashMap.put(s, false);
         return false;
     }
+
 }

@@ -23,9 +23,11 @@ The input is assumed to be a 32-bit signed integer. Your function should return 
 public class ReverseInteger {
 
 	public static void main(String[] args) {
-		reverse(1);
+		int result = reverse(-12);
+		System.out.println("Result: " + result);
 	}
 
+	// Note: the mod operation maintains the positive/negative sign along with the value.
 	static public int reverse(int x) {
 		long res = 0;
         while (x != 0) {

@@ -29,6 +29,15 @@ public class Triangle {
      * i = 1; cur = 1; next = 2; j = 0,1
      * i = 0; cur = 0; next = 1; j = 0
      */
+	
+	/*
+	 * Solution:
+	 * 
+	 * 1. Go from bottom to top.
+	 * 2. We start form the 2nd last row [size()-2].
+	 * 3. For each number, we add it with the smaller number of two numbers thats in the row below it.
+	 * 4. And finally we get to the top to get the smallest sum.
+	 */
     public int minimumTotal(List<List<Integer>> triangle) {
         for (int i = triangle.size() - 2; i >= 0; --i) {
             List<Integer> cur = triangle.get(i);

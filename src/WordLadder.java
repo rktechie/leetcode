@@ -35,7 +35,8 @@ public class WordLadder {
 
     }
 
-    // Work this with a paper and pencil to understand this properly. This is a BFS approach. Don't be mislead by the word "depth" in the comments.
+    // Work this with a paper and pencil to understand this properly. 
+    // This is a BFS approach. Don't be mislead by the word "depth" in the comments.
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         Queue<String> cur = new LinkedList<String>();
 
@@ -48,7 +49,8 @@ public class WordLadder {
         Set<String> visited = new HashSet<String>();
         
         while (!cur.isEmpty()) {
-            Queue<String> queue = new LinkedList<String>(); //keep track of all the new words that are created by changing one letter at a time. (For each depth/changeLevel, a new queue is maintained)
+        	//keep track of all the new words that are created by changing one letter at a time. (For each depth/changeLevel, a new queue is maintained)
+            Queue<String> queue = new LinkedList<String>();
             
             /* For every changeLevel/depth, this loop runs for all the words in a queue. 
              * After this loop ends, cur points to the updated queue, therefore we basically run for all the words in cur.

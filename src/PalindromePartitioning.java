@@ -42,7 +42,7 @@ public class PalindromePartitioning {
             String x = s.substring(0, i + 1);
             if (isPal(x)) {
                 List<List<String>> sub = partition(s.substring(i + 1));
-                // sub will be empty is s.substring(i + 1) is empty or if no more palindromes can be created from the substring.
+                // sub will be empty if s.substring(i + 1) is empty or if no more palindromes can be created from the substring.
                 if (sub.isEmpty()) {
                     result.add(Arrays.asList(x));
                 } else {

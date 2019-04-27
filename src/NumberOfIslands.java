@@ -25,8 +25,13 @@ Answer: 3
 public class NumberOfIslands {
 
     /*
-     * In current solution, if we encounter '1' then we mark all the surrounding 1's as X so that we dont count it again. This is DFS and time complexity is O(m*n).
-     * Another way of doing is to use a boolean matrix of same size and mark '1' and all the surrounding 1's as true in the boolean matrix. So in this way original matrix wont be changed.
+     * In current solution, if we encounter '1' then we mark all the surrounding 1's as X 
+     * so that we dont count it again. 
+     * 
+     * This is DFS and time complexity is O(m*n).
+     * 
+     * Another way of doing is to use a boolean matrix of same size and mark '1' and all the 
+     * surrounding 1's as true in the boolean matrix. So in this way original matrix wont be changed.
      * But if we use a boolean matrix then we are using extra space.
      */
     public int numIslands(char[][] grid) {

@@ -4,6 +4,16 @@
 Given a string S, find the longest palindromic substring in S. 
 You may assume that the maximum length of S is 1000, and there exists one unique 
 longest palindromic substring.
+
+Example 1:
+
+Input: "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+Example 2:
+
+Input: "cbbd"
+Output: "bb"
  */
 
 public class LongestPalindromicSubstring {
@@ -11,38 +21,44 @@ public class LongestPalindromicSubstring {
 	public static void main(String[] args) {
 		System.out.println(longestPalindrome("abcdbab"));
 	}
+	
+	private static int lo, maxLen;
 
 	public static String longestPalindrome(String s) {
-		StringBuilder sentence;
-		String first;
-		String current;
-		StringBuilder reverse;
-		String maxPalindrome = "";
-
-		if (s.length() == 1) {
+		int len = s.length();
+		if (len < 2)
 			return s;
-		}
+		
+	    for (int i = 0; i < len-1; i++) {
+	     	extendPalindrome(s, i, i);  //assume odd length, try to extend Palindrome as possible
+	     	extendPalindrome(s, i, i+1); //assume even length.
+	    }
+	    
+	    return s.substring(lo, lo + maxLen);
+	}
 
-		for (int i = 0; i < s.length(); i++) {
-			first = s.substring(i, i + 1);
-			sentence = new StringBuilder(first);
-			for (int j = i + 1; j < s.length(); j++) {
-				current = s.substring(j, j + 1);
-				// Keep appending elements one by one to the sentence so that it keeps growing
-				sentence.append(current);
-				// The the first letter (i.e i'th letter) is equal to the last letter (i.e j'th letter) then only it makes sense to check if the string formed is a palindrome or not
-				// The the first and last letter are not same then it will never be a palindrome.
-				if (first.equals(current)) {
-					reverse = new StringBuilder(sentence.toString());
-					reverse = reverse.reverse();
-					if (reverse.toString().equals(sentence.toString()) && sentence.length() > maxPalindrome.length()) {
-						maxPalindrome = sentence.toString();
-					}
-					reverse = new StringBuilder();
-				}
-			}
+	private static void extendPalindrome(String s, int j, int k) {
+		while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
+			j--;
+			k++;
 		}
-
-		return maxPalindrome;
+		if (maxLen < k - j - 1) {
+			lo = j + 1;
+			maxLen = k - j - 1;
+		}
+	}
+	
+	/*
+	 * Manachers Algorithm
+	 * 
+	 * We expand around the centers to find out a palindrome
+	 * Each character is considered as a center and the each gap is also considered as a center
+	 * 
+	 * What is bad - that we expand around every center
+	 * So to optimize this,  
+	 * 
+	 */
+	public static void longestPalindrome2(String s) {
+		
 	}
 }

@@ -96,7 +96,7 @@ public class RegularExpressionMatching {
 		if (s.length() != 0 && (p.charAt(0) == s.charAt(0) || (p.charAt(0) == '.'))) {
 			if (p.charAt(1) == '*')
 				// 1st half of OR is for the case if there are 1 or more
-				// elements for the * in s. (didnt get this. Ask someone)
+				// elements for the * in s.
 				// 2nd half of OR is for the case if there are 0 elements for
 				// the * in s, So thats why to move on we do substring(2) in p
 				return isMatch1(s.substring(1), p) || isMatch1(s, p.substring(2));

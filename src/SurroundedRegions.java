@@ -31,8 +31,10 @@ public class SurroundedRegions {
     }
 
     /*
-     * Traverse from the boarder to the inside and mark all the 'O's that are not surrounded by 'X' as 'V' (visited).
      * This solution is BFS.
+     * Traverse from the boarder to the inside and mark all the 'O's that are not surrounded by 'X' as 'V' (visited).
+     * 
+     * In the end, we check if it is 'V' then we mark it back as 'O' because they are the spots which are not entirely surrounded by 'X'
      */
     public void solve(char[][] board) {
         if (board.length == 0 || board[0].length == 0)
@@ -51,7 +53,7 @@ public class SurroundedRegions {
     }
 
     public void bfs(char[][] board, int row, int col) {
-        if (board[row][col] != 'O')
+        if (board[row][col] != 'O') // We only want to continue if the spot is 'O'
             return;
         int M = board.length, N = board[0].length;
         Queue<Integer> q = new LinkedList<Integer>();
