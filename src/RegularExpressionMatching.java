@@ -94,7 +94,7 @@ public class RegularExpressionMatching {
 		}
 
 		if (s.length() != 0 && (p.charAt(0) == s.charAt(0) || (p.charAt(0) == '.'))) {
-			if (p.charAt(1) == '*')
+			if (p.charAt(1) == '*') // NOTE: here we are checking the second char i.e. charAt(1)
 				// 1st half of OR is for the case if there are 1 or more
 				// elements for the * in s.
 				// 2nd half of OR is for the case if there are 0 elements for

@@ -24,6 +24,15 @@ public class LongestPalindromicSubstring {
 	
 	private static int lo, maxLen;
 
+	/*
+	 * Time complexity O(n^2)  --- Not a dp solution but a very efficient soln with same complexity as dp
+	 * 
+	 * We pick a center and keep expanding around it.
+	 * 
+	 * Each letter is a center (for odd length palindrome scenario) 
+	 * and the spaces between the letter are centers too (for even length palindrome scenario)
+	 * 
+	 */
 	public static String longestPalindrome(String s) {
 		int len = s.length();
 		if (len < 2)
@@ -38,27 +47,47 @@ public class LongestPalindromicSubstring {
 	}
 
 	private static void extendPalindrome(String s, int j, int k) {
+		// loop until meet invalid match
 		while (j >= 0 && k < s.length() && s.charAt(j) == s.charAt(k)) {
 			j--;
 			k++;
 		}
-		if (maxLen < k - j - 1) {
+		
+		int newLen = k - j - 1;
+		
+		if (maxLen < newLen) {
 			lo = j + 1;
-			maxLen = k - j - 1;
+			maxLen = newLen;
 		}
 	}
 	
 	/*
-	 * Manachers Algorithm
-	 * 
-	 * We expand around the centers to find out a palindrome
-	 * Each character is considered as a center and the each gap is also considered as a center
-	 * 
-	 * What is bad - that we expand around every center
-	 * So to optimize this,  
-	 * 
+	 * Dp solution
 	 */
-	public static void longestPalindrome2(String s) {
-		
-	}
+	public static String longestPalindrome2(String s) {
+        int n = s.length();
+        String res = null;
+        int palindromeStartsAt = 0, maxLen = 0;
+
+        boolean[][] dp = new boolean[n][n];
+        // dp[i][j] indicates whether substring s starting at index i and ending at j is palindrome
+        
+        for(int i = n-1; i >= 0; i--) { // keep increasing the possible palindrome string
+            for(int j = i; j < n; j++) { // find the max palindrome within this window of (i,j)
+                
+                //check if substring between (i,j) is palindrome
+                dp[i][j] = (s.charAt(i) == s.charAt(j)) // chars at i and j should match
+                           && 
+                           ( j-i < 3  // if window is less than or equal to 3, just end chars should match
+                             || dp[i+1][j-1]  ); // if window is > 3, substring (i+1, j-1) should be palindrome too
+                
+                //update max palindrome string
+                if(dp[i][j] && (j-i+1 > maxLen)) {
+                    palindromeStartsAt = i;
+                    maxLen = j-i+1;
+                }
+            }
+        }
+        return s.substring(palindromeStartsAt, palindromeStartsAt+maxLen);
+    }
 }

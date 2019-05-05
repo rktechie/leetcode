@@ -19,8 +19,8 @@ public class MaximumSubarray {
 			return 0;
 		int dp = nums[0], res = nums[0];
 		for (int i = 1; i < nums.length; ++i) {
-			dp = Math.max(nums[i], dp + nums[i]);
-			res = Math.max(res, dp);
+			dp = Math.max(nums[i], dp + nums[i]); //maxEndingHere
+			res = Math.max(res, dp); //maxSoFar
 		}
 		return res;
 	}

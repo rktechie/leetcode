@@ -66,6 +66,7 @@ public class KthLargestElementArray {
     }
     
     public int findKthLargest3(int[] nums, int k) {
+    	// in Java 8, the below code can be written as PriorityQueue<Integer> heap = new PriorityQueue<>((a,b) -> a - b);
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(nums.length, new Comparator<Integer>() {
 
             public int compare(Integer o1, Integer o2) {
@@ -78,6 +79,7 @@ public class KthLargestElementArray {
         
         while (k - 1 > 0) {
             maxHeap.poll();
+            k--;
         }
         
         return maxHeap.poll();

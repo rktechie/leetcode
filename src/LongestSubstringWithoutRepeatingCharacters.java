@@ -24,11 +24,20 @@ public class LongestSubstringWithoutRepeatingCharacters {
 
 	}
 	
-	// Method 1:the basic idea is, keep a hashmap which stores the characters in string as keys and 
-	// their positions as values, and keep two pointers which define the max substring. 
-	// move the right pointer to scan through the string , and meanwhile update the hashmap. 
-	// If the character is already in the hashmap, then move the left pointer to the right of the same character last found. 
-	// Note that the two pointers can only move forward.
+	/*
+	 * Method 1:the basic idea is, keep a hashmap which stores the characters in string as keys and
+	 * their positions as values, and keep two pointers which define the max substring.
+	 * 
+	 * Move the right pointer to scan through the string , and meanwhile update the hashmap.
+	 * If the character is already in the hashmap, then move the left pointer to the right of the same character last found.
+	 * Note that the two pointers can only move forward.
+	 * 
+	 * For j, we do j = Math.max(.....) because: 
+	 * j represents the start of the current string with unique characters, 
+	 * so if you have a string like abba, when you encounter last a, you want to mark the 
+	 * start of the string from index 2(second occurrence of b) which is the last known index 
+	 * which holds uniqueness assumption, not from map.get(a)+1 which is 1.
+	 */
 	public int lengthOfLongestSubstring(String s) {
         if (s.length()==0) return 0;
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
