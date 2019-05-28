@@ -39,7 +39,9 @@ public class SubarraySumEqualsK {
 	public int subarraySum(int[] nums, int k) {
         int sum = 0, result = 0; // sum is to keep track of sum of all the elements so far
         Map<Integer, Integer> preSum = new HashMap<>(); // key: preSum, value: frequency
-        preSum.put(0, 1); //it is for those (sum - k) == 0 calculations which are valid subarrays but need to get counted. e.g. if k = 7 and sum = 7 (at second element for array is : 3, 4, 3, 8) at some iteration.....then sum - k = 0....this 0 will get counted in statement result += preSum.get(sum - k);
+        // it is for those (sum - k) == 0 calculations which are valid subarrays but need to get counted. 
+        // e.g. if k = 7 and sum = 7 (at second element for array is : 3, 4, 3, 8) at some iteration.....then sum - k = 0....this 0 will get counted in statement result += preSum.get(sum - k);
+        preSum.put(0, 1); 
         
         for (int i = 0; i < nums.length; i++) {
             sum += nums[i];

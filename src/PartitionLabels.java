@@ -27,7 +27,7 @@ public class PartitionLabels {
 
 	/*
 	 * Traverse the string record the last index of each char.
-	 * Using pointer to record end of the current sub string.
+	 * Use pointer to record end of the current sub string.
 	 * 
 	 * Time Complexity: O(N), where N is the length of S.
 	 * Space Complexity: O(N).

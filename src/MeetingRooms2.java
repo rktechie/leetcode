@@ -37,6 +37,7 @@ public class MeetingRooms2 {
         
         PriorityQueue<int[]> heap = new PriorityQueue<>(intervals.length, (a, b) -> (a[1] - b[1]));
         heap.add(intervals[0]);
+        
         for (int i = 1; i < intervals.length; i++) {
         	// interval.start >= queue.interval.end
         	if(intervals[i][0] >= heap.peek()[1]) { // no overlap, then should update smallest end.

@@ -76,8 +76,9 @@ public class TaskScheduler {
 	        if (q.isEmpty()) // job done 
 	        	break;
 	        
-	        count = count + interval; // if k > 0, then it means we need to be idle
+	        count = count + interval; // if interval > 0, then it means we need to be idle
 	    }
+	    
 	    return count;
 	}
 }
