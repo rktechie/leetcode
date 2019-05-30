@@ -22,7 +22,8 @@ public class FindFirstLastPositionSortedArray {
 	// Note in this we return l
 	public static int getLowerBound(int[] A, int target) {
 		int l = 0, r = A.length - 1;
-		// This while loop exits when the l points to the target if it exists. It exists when r goes lower than l and in that situation l points to the target.
+		// This while loop exits when the l points to the target if it exists. 
+		// It exists when r goes lower than l and in that situation l points to the target.
 		while (l <= r) {
 			int mid = (l + r) / 2;
 			if (A[mid] < target)

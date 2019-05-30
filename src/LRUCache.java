@@ -24,6 +24,7 @@ cache.get(3);       // returns 3
 cache.get(4);       // returns 4
  */
 
+import java.util.HashMap;
 import java.util.Hashtable;
 
 /*
@@ -74,19 +75,19 @@ public class LRUCache {
 	/**
 	 * Move certain node in between to the head.
 	 */
-	private void moveToHead(DLinkedNode node){
+	private void moveToHead(DLinkedNode node) {
 		this.removeNode(node);
 		this.addNode(node);
 	}
 
 	// pop the current tail. 
-	private DLinkedNode popTail(){
+	private DLinkedNode popTail() {
 		DLinkedNode res = tail.pre;
 		this.removeNode(res);
 		return res;
 	}
 
-	private Hashtable<Integer, DLinkedNode> cache = new Hashtable<Integer, DLinkedNode>();
+	private HashMap<Integer, DLinkedNode> cache = new HashMap<Integer, DLinkedNode>();
 	private int count;
 	private int capacity;
 	private DLinkedNode head, tail;

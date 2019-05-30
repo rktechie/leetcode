@@ -90,7 +90,7 @@ public class RegularExpressionMatching {
 		if (p.length() == 1) {
 			if (s.length() != 1)
 				return false;
-			return (s.charAt(0) == p.charAt(0)) || (p.charAt(0) == '.');
+			return (s.charAt(0) == p.charAt(0)) || (p.charAt(0) == '.'); // either the chars match or it can be any char
 		}
 
 		if (s.length() != 0 && (p.charAt(0) == s.charAt(0) || (p.charAt(0) == '.'))) {
