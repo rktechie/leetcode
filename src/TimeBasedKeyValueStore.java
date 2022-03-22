@@ -74,7 +74,7 @@ public class TimeBasedKeyValueStore {
 			if (treeMap == null) {
 				return "";
 			}
-			Integer floor = treeMap.floorKey(timestamp);
+			Integer floor = treeMap.floorKey(timestamp); // note: floorKey helps to get the exact current key or the greatest key lesser than the current key 
 			if (floor == null) {
 				return "";
 			}
@@ -100,7 +100,7 @@ class TimeMap {
     Map<String, List<Node>> map;
     /** Initialize your data structure here. */
     public TimeMap() {
-        map = new HashMap();
+        map = new HashMap<>();
     }
     
     public void set(String key, String value, int timestamp) {

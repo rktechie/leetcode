@@ -58,7 +58,7 @@ public class MinimumWindowSubstring {
 	      
 	    	end++;
 	    	
-	    	// When we found a valid window, move start to find *smaller* window.
+	    	// When we find a valid window, move start to find *smaller* window.
 	    	while (counter == 0) { // it means we have all characters between start and end
 	    		if (minLen > end - start) {
 	    			minLen = end - start;

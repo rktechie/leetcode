@@ -67,9 +67,11 @@ public class DesignHashMap {
 		}
 
 		private ListNode findElement(int index, int key) {
-			if (nodes[index] == null)
+			if (nodes[index] == null) // there is no element at the index
 				return nodes[index] = new ListNode(-1, -1);
 
+			// If an element is found, then multiples keys can have the same hash code. \
+			// So, we while loop through all the elements to find the element with the key we are looking for.
 			ListNode prev = nodes[index];
 
 			while (prev.next != null && prev.next.key != key) {

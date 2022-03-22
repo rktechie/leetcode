@@ -49,7 +49,7 @@ public class MinStack {
 
 	/** initialize your data structure here. */
 	public MinStack() {
-		stack = new Stack<Integer>();
+		stack = new Stack<>();
 		minStack = new Stack<>();
 	}
 

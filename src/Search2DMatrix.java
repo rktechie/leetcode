@@ -27,27 +27,29 @@ public class Search2DMatrix {
 	}
 
 	// Use binary search in each row to find the target.
+	/*
+	 * We start search the matrix from top right corner, initialize the current position to top right corner, 
+	 * if the target is greater than the value in current position, then the target can not be in entire row of 
+	 * current position because the row is sorted, if the target is less than the value in current position, 
+	 * then the target can not in the entire column because the column is sorted too. 
+	 * 
+	 * We can rule out one row or one column each time, so the time complexity is O(m+n).
+	 */
 	public static boolean searchMatrix(int[][] matrix, int target) {
-		int left = 0;
-		int right = 0;
-		int mid = 0;
-		
-		for (int i = 0; i < matrix.length; i++) {
-			left = 0;
-			right = matrix[i].length - 1;
-			if (matrix[i][right] < target)	// Because the first integer of each row is greater than the last integer of the previous row. So if target is greater than last element, then just go to the next row.
-				continue;
-			while (left <= right) {
-				mid = (left + right) / 2;
-				if (matrix[i][mid] == target)
-					return true;
-				if (matrix[i][mid] < target)
-					left = mid + 1;
-				else
-					right = mid - 1;
-			}
-		}
-		
-		return false;
-	}
+        if(matrix == null || matrix.length < 1 || matrix[0].length <1) {
+            return false;
+        }
+        int col = matrix[0].length-1;
+        int row = 0;
+        while(col >= 0 && row <= matrix.length-1) {
+            if(target == matrix[row][col]) {
+                return true;
+            } else if(target < matrix[row][col]) {
+                col--;
+            } else if(target > matrix[row][col]) {
+                row++;
+            }
+        }
+        return false;
+    }
 }

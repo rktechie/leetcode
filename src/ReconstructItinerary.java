@@ -69,22 +69,22 @@ public class ReconstructItinerary {
 	 * So, the algorithm is to find the end node first and delete the path to this node(backtrack), 
 	 * meanwhile using PriorityQueue to guarantee lexical order.
 	 * 
-	 * Lets see how this algo ensures we dont get a deadend node in middle of the route:
-	 * Starting at the first node, we can only get stuck at the ending point,
-	 * since every node except for the first and the last node has even number of edges, 
-	 * when we enter a node we can always get out. 
 	 * 
-	 * Now we are at the destination and if all edges are visited, we are done, 
-	 * and the dfs returns to the very first state. 
+	 * The main idea to find the Eulerian path consists of two steps:
+	 * Step 1). Starting from any vertex, we keep following the unused edges until we get stuck at certain vertex where 
+	 * we have no more unvisited outgoing edges.
+	 * Step 2). We then backtrack to the nearest neighbor vertex in the current path that has unused edges and we repeat 
+	 * the process until all the edges have been used.
 	 * 
-	 * Otherwise we need to "insert" the unvisited loop into corresponding position, 
-	 * and in the dfs method, it returns to the node with extra edges, 
-	 * starts another recursion and adds the result before the next path. 
+	 * The first vertex that we got stuck at would be the end point of our Eulerian path. 
+	 * So if we follow all the stuck points backwards, we could reconstruct the Eulerian path at the end.
 	 * 
 	 * This process continues until all edges are visited.
 	 * 
-	 * Basically, a dead end node will be having odd number of edges and it wont be entered into the map in the first place.
-	 * 
+	 * Time Complexity: O((E/2)log(E/2) where E is the number of edges (flights) in the input.
+	 * As one can see from the above algorithm, during the DFS process, we would traverse each edge once. Therefore, the complexity of the DFS function would be |E|
+	 * However, before the DFS, we need to sort the outgoing edges for each vertex. And this, unfortunately, dominates the overall complexity.
+	 * As a result, the sorting operation on this airport would be exceptionally expensive, i.e. NlogN, where N = |E|/2 
 	 */
 	public List<String> findItinerary(List<List<String>> tickets) {
         for (List<String> ticket : tickets)

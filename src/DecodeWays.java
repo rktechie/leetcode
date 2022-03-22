@@ -32,7 +32,7 @@ public class DecodeWays {
 	 * It's right to initialize dp[0] = 1, but it's not accurate to say "an empty string will have one way to decode". 
 	 * In dynamic programming, we usually set dp[0] = 1.
 	 * 
-	 * dp[1] : when there's one character, if it is not zero, it can only be 1 decode way. 
+	 * dp[1] : when there's one character, if it is not zero, there can only be 1 decode way. 
 	 * If it is 0, there will be no decode ways.
 	 * 
 	 * First check if substring (i-1,i) is 0 or not. If it is 0, skip it, continue right 
@@ -65,6 +65,6 @@ public class DecodeWays {
 			}
 		}
 
-		return dp[n];
+		return dp[n]; // return the last element
 	}
 }

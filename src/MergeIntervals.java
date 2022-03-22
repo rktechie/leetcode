@@ -46,10 +46,10 @@ public class MergeIntervals {
         int end = intervals[0][1];
         
         for(int[] i : intervals) {
-            if(i[0] <= end) {
+            if(i[0] <= end) { // Overlapping intervals, move the end if needed
                 end = Math.max(end, i[1]);
             }
-            else {
+            else { // Disjoint intervals, add the new interval to the list
                 res.add(new int[]{start, end});
                 start = i[0];
                 end = i[1];

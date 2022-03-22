@@ -44,23 +44,28 @@ public class MostCommonWord {
 
 	}
 	
+	/*
+	 * Time Complexity: O(P + B), where P is the size of paragraph and B is the size of banned.
+	 * Space Complexity: O(P + B), to store the count and the banned set.
+	 */
 	public String mostCommonWord(String paragraph, String[] banned) {
-	    Set<String> set = new HashSet<>(Arrays.asList(banned));
-	        
-	    Map<String, Integer> map = new HashMap<>();
-	    String ans = ""; int count = 0;
-	    for (String s : paragraph.replaceAll("\\W+" , " ").toLowerCase().split("\\s+")) {
-	        s = s.trim();
-	        if (s.length() == 0 || set.contains(s)) 
-	        	continue;
-	        map.put(s, map.getOrDefault(s, 0) + 1);
-	        if (count < map.get(s)) { 
-	        	count = map.get(s); 
-	        	ans = s;
-	        }
-	    }
-	    
-	    return ans;
+		Set<String> set = new HashSet<>(Arrays.asList(banned));
+
+		Map<String, Integer> map = new HashMap<>();
+		String ans = "";
+		int count = 0; // keep the max count
+		for (String s : paragraph.replaceAll("\\W+", " ").toLowerCase().split("\\s+")) {
+			s = s.trim();
+			if (s.length() == 0 || set.contains(s))
+				continue;
+			map.put(s, map.getOrDefault(s, 0) + 1);
+			if (count < map.get(s)) {
+				count = map.get(s);
+				ans = s;
+			}
+		}
+
+		return ans;
 	}
 
 }

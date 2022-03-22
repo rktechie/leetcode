@@ -27,6 +27,11 @@ public class ContainerWithMostWater {
 	 * 
 	 * Multiply them to get how much water this container can hold, and update water accordingly. 
 	 * Next remove the smaller one of the two lines from consideration, Continue until there is nothing left to consider, then return the result.
+	 * 
+	 * Now, to maximize the area, we need to consider the area between the lines of larger lengths. 
+	 * If we try to move the pointer at the longer line inwards, we won't gain any increase in area, since it is 
+	 * limited by the shorter line. So we must move the shorter one because moving the larger one cannot give an 
+	 * increase in area.
 	 */
 	public int maxArea(int[] height) {
 		int i = 0;

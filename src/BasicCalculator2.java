@@ -41,7 +41,7 @@ public class BasicCalculator2 {
 			if (Character.isDigit(s.charAt(i))) {
 				num = num * 10 + s.charAt(i) - '0';
 			}
-			// note: this is not else if but instead its if so it gets executed for the condition when i == len - 1
+			// note: this is not else if but instead its if so that it gets executed for the condition when i == len - 1
 			if ((!Character.isDigit(s.charAt(i)) && ' ' != s.charAt(i)) || i == len - 1) { // i == len - 1 is very important as its used to push the last number in the stack
 				// perform the action based on the previous sign encountered
 				if (sign == '-') {

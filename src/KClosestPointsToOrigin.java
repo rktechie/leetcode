@@ -59,12 +59,7 @@ public class KClosestPointsToOrigin {
 	 * The disadvatage of this solution is it is not the most efficient solution.
 	 */
 	public int[][] kClosest(int[][] points, int K) {
-        PriorityQueue<int[]> heap = new PriorityQueue<>(new Comparator<int[]>() {
-			@Override
-			public int compare(int[] p1, int[] p2) {
-				return (p2[0] * p2[0] + p2[1] * p2[1]) - (p1[0] * p1[0] + p1[1] * p1[1]);
-			}
-		});
+        PriorityQueue<int[]> heap = new PriorityQueue<int[]>((p1, p2) -> p2[0] * p2[0] + p2[1] * p2[1] - p1[0] * p1[0] - p1[1] * p1[1]);
         
         for (int[] point : points) {
         	heap.add(point);

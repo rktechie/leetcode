@@ -35,8 +35,15 @@ public class WordLadder {
 
     }
 
-    // Work this with a paper and pencil to understand this properly. 
-    // This is a BFS approach. Don't be mislead by the word "depth" in the comments.
+    /*
+     * This is a BFS approach. Don't be mislead by the word "depth" in the comments.
+     * Time Complexity: O(M×N), where M is the length of words and N is the total number of words in the input word list. 
+     * Finding out all the transformations takes M iterations for each of the N words. 
+     * Also, breadth first search in the worst case might go to each of the N words.
+     * 
+     * Space Complexity: O(M×N), to store all M transformations for each of the N words, in the all_combo_dict dictionary. 
+     * Visited dictionary is of N size. Queue for BFS in worst case would need space for all N words.
+     */
     public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
         Queue<String> cur = new LinkedList<String>();
 
@@ -52,7 +59,7 @@ public class WordLadder {
         	//keep track of all the new words that are created by changing one letter at a time. (For each depth/changeLevel, a new queue is maintained)
             Queue<String> queue = new LinkedList<String>();
             
-            /* For every changeLevel/depth, this loop runs for all the words in a queue. 
+            /* For every changeLevel/depth, this loop runs for all the words in the cur queue. 
              * After this loop ends, cur points to the updated queue, therefore we basically run for all the words in cur.
              */
             while (!cur.isEmpty()) {

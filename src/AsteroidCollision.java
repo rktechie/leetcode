@@ -55,14 +55,13 @@ public class AsteroidCollision {
 		for (int cur : asteroids) {
 			if (cur > 0) { // previous one does not matter, no collision forever as greater than 0 means moving right
 				stack.push(cur);
-			} else { 
-				// destroy the previous positive one(s)
-				while (!stack.isEmpty() && stack.peek() > 0 && -cur > stack.peek()) {
+			} else {
+				while (!stack.isEmpty() && stack.peek() > 0 && -cur > stack.peek()) { // destroy the previous positive one(s)
 					stack.pop();
 				}
-				if (stack.isEmpty() || stack.peek() < 0) {
+				if (stack.isEmpty() || stack.peek() < 0) { // the current object is stronger
 					stack.push(cur);
-				} else if (stack.peek() == -cur) {
+				} else if (stack.peek() == -cur) { // both the objects are equal in size
 					stack.pop();
 				}
 			}

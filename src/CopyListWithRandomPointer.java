@@ -87,6 +87,8 @@ public class CopyListWithRandomPointer {
 
 	/*
 	 * Solution 2: using hashmap
+	 * 
+	 * HashMap which holds old nodes as keys and new nodes as its values.
 	 */
 	public Node copyRandomList2(Node head) {
 		if (head == null)

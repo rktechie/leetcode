@@ -28,7 +28,6 @@ public class RegularExpressionMatching {
 		System.out.println(b);
 	}
 
-	// Easy solution found on the internet
 	/*
 	 * The key of the problem is to check if p[j + 1] is a '*', and has two
 	 * cases: 1. If p[j + 1] is a '.', then this case is simple. Just need to
@@ -50,10 +49,10 @@ public class RegularExpressionMatching {
 			if (s == null || s.length() == 0) {
 				return false;
 			}
-			if (s.charAt(0) != p.charAt(0) && p.charAt(0) != '.') {
+			if (s.charAt(0) != p.charAt(0) && p.charAt(0) != '.') { // eg: s=a ; p=b
 				return false;
 			}
-			return isMatch(s.substring(1), p.substring(1));
+			return isMatch(s.substring(1), p.substring(1)); // eg: s=a ; p=.
 		}
 
 		// Case 2: p.charAt(1) != '*'
@@ -61,21 +60,21 @@ public class RegularExpressionMatching {
 			if (s.length() == 0) {
 				return false;
 			}
-			if (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') {
+			if (s.charAt(0) == p.charAt(0) || p.charAt(0) == '.') { // eg: s=aa ; p=ab OR s=aa ; p=.b
 				return isMatch(s.substring(1), p.substring(1));
 			} else {
-				return false;
+				return false; // eg: s=aa ; p=ca
 			}
-		} else { // case 3
-			if (isMatch(s, p.substring(2))) {
+		} else { // Case 3: p.charAt(1) == '*'
+			if (isMatch(s, p.substring(2))) { // * means 0 or more. So this case is when there is 0 element is current char. eg: s=aa ; p=a*
 				return true;
 			}
 			int i = 0;
-			while (i < s.length() && (s.charAt(i) == p.charAt(0) || p.charAt(0) == '.')) {
-				if (isMatch(s.substring(i + 1), p.substring(2))) {
+			while (i < s.length() && (s.charAt(i) == p.charAt(0) || p.charAt(0) == '.')) { // eg: s=aaa ; p=a* OR s=aa ; p=.*
+				if (isMatch(s.substring(i + 1), p.substring(2))) { // case when there is only 1 element of the current char. eg: s=ab ; p=a*b OR s=ab ; p=.*b 
 					return true;
 				}
-				i++;
+				i++; // eg: above "if" is false in the case when there are N elements of the current char. eg: s=aaaa ; p=a* OR s=aaaa ; p=.*
 			}
 
 			return false;

@@ -45,7 +45,7 @@ public class NestedListWeightSum2 {
 	            if (ni.isInteger())
 	                unweighted += ni.getInteger();
 	            else
-	                nextLevel.addAll(ni.getList());
+	                nextLevel.addAll(ni.getList()); // note: addAll will add each element from the list and not the list itself
 	        }
 	        // note: we DO NOT reset the unweighted total, so that keeps getting carried forward 
 	        // which eventually means we keep adding previous numbers again and again.
