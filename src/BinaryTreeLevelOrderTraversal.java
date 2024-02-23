@@ -103,7 +103,7 @@ public class BinaryTreeLevelOrderTraversal {
             } else {
                 res.add(level);
                 level = new ArrayList<Integer>();
-                if (q.isEmpty() == true)
+                if (q.isEmpty())
                     break;
                 q.offer(null);
             }

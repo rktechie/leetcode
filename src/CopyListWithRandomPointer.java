@@ -48,6 +48,9 @@ public class CopyListWithRandomPointer {
 	 * Solution 1: iterating the list 3 times
 	 * 
 	 * THIS SOLUTION IS FASTER THAN SOLUTION 2 (by a small amount)
+	 *
+	 * Time Complexity : O(N)
+	 * Space Complexity : O(1)
 	 */
 	public Node copyRandomList(Node head) {
 		if (head == null)
@@ -89,6 +92,9 @@ public class CopyListWithRandomPointer {
 	 * Solution 2: using hashmap
 	 * 
 	 * HashMap which holds old nodes as keys and new nodes as its values.
+	 *
+	 * Time Complexity : O(N)
+	 * Space Complexity : O(N)
 	 */
 	public Node copyRandomList2(Node head) {
 		if (head == null)

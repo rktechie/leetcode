@@ -52,7 +52,8 @@ public class CombinationSum {
 
 		for (int i = start; i < candidates.length && candidates[i] <= target; i++) {
 			numbersSelectedTillNow.add(candidates[i]);
-			// we pass "i" in the function i.e the same element will be added again. We did this because an element can be repeated unlimited number of times. 
+			// we pass "i" in the function i.e the same element will be added again.
+			// We did this because an element can be repeated unlimited number of times.
 			combinationSumHelper(candidates, target - candidates[i], result, numbersSelectedTillNow, i);
 			numbersSelectedTillNow.remove(numbersSelectedTillNow.size() - 1);
 		}

@@ -1,34 +1,41 @@
 /*
- * Problem 211: Add and Search Word - Data structure design
+ * Problem 211: Design Add and Search Words Data Structure
  * 
-Design a data structure that supports the following two operations:
+Design a data structure that supports adding new words and finding if a string matches any previously added string.
 
-void addWord(word)
-bool search(word)
+Implement the WordDictionary class:
 
-search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
-
-For example:
-
-addWord("bad")
-addWord("dad")
-addWord("mad")
-search("pad") -> false
-search("bad") -> true
-search(".ad") -> true
-search("b..") -> true
-
-Note:
-You may assume that all words are consist of lowercase letters a-z.
-
-click to show hint.
-You should be familiar with how a Trie works. If not, please work on this problem: Implement Trie (Prefix Tree) first.
+WordDictionary() Initializes the object.
+void addWord(word) Adds word to the data structure, it can be matched later.
+bool search(word) Returns true if there is any string in the data structure that matches word or false otherwise. word may contain dots '.' where dots can be matched with any letter.
 
 
-Your WordDictionary object will be instantiated and called as such:
-    WordDictionary wordDictionary = new WordDictionary();
-    wordDictionary.addWord("word");
-    wordDictionary.search("pattern");
+Example:
+
+Input
+["WordDictionary","addWord","addWord","addWord","search","search","search","search"]
+[[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]]
+Output
+[null,null,null,null,false,true,true,true]
+
+Explanation
+WordDictionary wordDictionary = new WordDictionary();
+wordDictionary.addWord("bad");
+wordDictionary.addWord("dad");
+wordDictionary.addWord("mad");
+wordDictionary.search("pad"); // return False
+wordDictionary.search("bad"); // return True
+wordDictionary.search(".ad"); // return True
+wordDictionary.search("b.."); // return True
+
+
+Constraints:
+
+1 <= word.length <= 25
+word in addWord consists of lowercase English letters.
+word in search consist of '.' or lowercase English letters.
+There will be at most 2 dots in word for search queries.
+At most 104 calls will be made to addWord and search.
  */
 
 public class AddAndSearchWord {

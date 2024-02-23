@@ -19,6 +19,11 @@ class ListNode {
 	ListNode(int x) {
 		val = x;
 	}
+
+	ListNode(int x, ListNode node) {
+		val = x;
+		next = node;
+	}
 }
 
 public class RemoveNthNodeFromEnd {
@@ -33,24 +38,28 @@ public class RemoveNthNodeFromEnd {
 	}
 
 	public static ListNode removeNthFromEnd(ListNode head, int n) {
-		ListNode tempHead = head;
-		ListNode runner = head;
-		ListNode previous = null;
-
+		ListNode fast = head;
 		for (int i = 0; i < n; i++) {
-			runner = runner.next;
-		}
-		while (runner != null) {
-			previous = head;
-			head = head.next;
-			runner = runner.next;
-		}
-		if (previous == null) {
-			tempHead = head.next;
-		} else {
-			previous.next = head.next;
+			fast = fast.next;
 		}
 
-		return tempHead;
+		ListNode prev = null;
+		ListNode slow = head;
+		while (fast != null) {
+			if (prev == null) { // if initializing prev for the 1st time
+				prev = head;
+			} else {
+				prev = prev.next;
+			}
+			fast = fast.next;
+			slow = slow.next;
+		}
+
+		if (prev == null) { // if the element to be removed is the 1st node
+			return head.next;
+		} else {
+			prev.next = slow.next;
+			return head;
+		}
 	}
 }

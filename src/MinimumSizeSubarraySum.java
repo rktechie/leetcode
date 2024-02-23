@@ -1,7 +1,8 @@
 /*
  * Problem 209: Minimum Size Subarray Sum
  * 
-Given an array of n positive integers and a positive integer s, find the minimal length of a subarray of which the sum ≥ s. If there isn't one, return 0 instead.
+Given an array of n positive integers and a positive integer s, find the minimal length of a subarray of which the sum ≥ s.
+If there isn't one, return 0 instead.
 
 For example, given the array [2,3,1,2,4,3] and s = 7,
 the subarray [4,3] has the minimal length under the problem constraint.
@@ -21,6 +22,8 @@ public class MinimumSizeSubarraySum {
      * We shrink until sum falls below s.
      * Then we can grow the window on right again and so on.
      * We keep this procedure of growing-shrinking until the window end reaches the end of the array.
+     *
+     * Time complexity: O(n)
      */
     public int minSubArrayLen(int s, int[] nums) {
         if (nums == null || nums.length == 0)
@@ -33,8 +36,10 @@ public class MinimumSizeSubarraySum {
             end++;
             
             while (sum >= s) {
-                min = Math.min(min, end - start);
+                min = Math.min(min, end - start); // end - start is the size of current subarray
                 sum -= nums[start];
+                // the first index can safely be incremented, since, the minimum subarray starting
+                // with this index with sum>=s has been achieved
                 start++;
             }
         }

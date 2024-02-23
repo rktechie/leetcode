@@ -47,6 +47,8 @@ public class SummaryRanges {
         return result;
     }
 
+    // Time complexity: O(n).
+    // We iterate over each nums element once
     public List<String> summaryRanges2(int[] nums) {
         int length = nums.length;
         List<String> result = new ArrayList<String>(length);

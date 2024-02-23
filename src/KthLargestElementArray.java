@@ -16,7 +16,11 @@ You may assume k is always valid, 1 ≤ k ≤ array's length.
 public class KthLargestElementArray {
 
     /*
-     * Solution 1 is Quick Select. Time complexity is O(n).  If that would be a quicksort algorithm, one would proceed recursively to use quicksort for the both parts that would result in O(NlogN) time complexity. Here there is no need to deal with both parts since now one knows in which part to search for N - kth smallest element, and that reduces average time complexity to O(N).
+     * Solution 1 is Quick Select. Time complexity is O(n).  If that would be a quicksort algorithm,
+     * one would proceed recursively to use quicksort for the both parts that would result in O(NlogN) time complexity.
+     * Here there is no need to deal with both parts since now one knows in which part to search for N - kth smallest element,
+     * and that reduces average time complexity to O(N).
+     *
      * Solution 2 and 3 both have the same running time i.e 17 ms. Time complexity is O(nlog(k)) and Space complexity is O(k).
      * In solution 2, we keep removing elements till only k elements are left.
      * In solution 3, we insert the elements in an descending sorted way. So we only pop k elements.
@@ -66,7 +70,7 @@ public class KthLargestElementArray {
     }
     
     public int findKthLargest3(int[] nums, int k) {
-    	// in Java 8, the below code can be written as PriorityQueue<Integer> heap = new PriorityQueue<>((a,b) -> a - b);
+    	  // in Java 8, the below code can be written as PriorityQueue<Integer> heap = new PriorityQueue<>((a,b) -> a - b);
         PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(nums.length, new Comparator<Integer>() {
 
             public int compare(Integer o1, Integer o2) {

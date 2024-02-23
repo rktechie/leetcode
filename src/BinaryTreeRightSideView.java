@@ -72,7 +72,6 @@ public class BinaryTreeRightSideView {
 				TreeNode cur = queue.poll();
 				if (size == 0) // this means we are at the last node at that level, so we add that node as its the right most node
 					res.add(cur.val);
-
 				if (cur.left != null)
 					queue.offer(cur.left);
 				if (cur.right != null)

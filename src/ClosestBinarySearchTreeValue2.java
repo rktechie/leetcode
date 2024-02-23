@@ -36,7 +36,8 @@ public class ClosestBinarySearchTreeValue2 {
 	 * if (root.val - target) is bigger than (list.peek().val - target), 
 	 * then all of root's right child also has (child.val - target) > (list.peek().val - target)
 	 * 
-	 * Time complexity - O(N) 
+	 * Time complexity - O(N)
+	 * We visit each node at most once during the traversal.
 	 */
     public List<Integer> closestKValues(TreeNode root, double target, int k) {
         LinkedList<Integer> res = new LinkedList<>();
@@ -51,8 +52,8 @@ public class ClosestBinarySearchTreeValue2 {
         
         collect(root.left, target, k, res);
 
+				// if size k, add current and remove head if it's optimal, otherwise return
         if (res.size() == k) {
-            //if size k, add current and remove head if it's optimal, otherwise return
             if (Math.abs(target - root.val) < Math.abs(target - res.peekFirst())) 
                 res.removeFirst(); // as we traverse the tree inorder, the first node will always be the node with the largest diff, so we remove it if the list is of size k
             else 

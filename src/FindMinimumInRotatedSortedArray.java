@@ -10,7 +10,7 @@ Find the minimum element.
 You may assume no duplicate exists in the array.
  */
 
-public class MinimumInRotatedSortedArray {
+public class FindMinimumInRotatedSortedArray {
 
     public static void main(String[] args) {
 
@@ -23,7 +23,7 @@ public class MinimumInRotatedSortedArray {
         int left = 0, right = nums.length - 1;
         while (left < right && nums[left] > nums[right]) {
             int mid = left + (right - left) / 2;
-            if (nums[mid] > nums[right])
+            if (nums[mid] > nums[right]) // this means that we need to look for the inflection point on the right of mid.
                 left = mid + 1;
             else
                 right = mid;

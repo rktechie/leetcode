@@ -27,19 +27,28 @@ public class WordBreak {
     }
     
     // Method 1 : DP (didn't understand this)
+    // we let dp[i] hold the answer to the question: "is it possible to form s up to a length of i?
+    // i represents the length of the string starting from the beginning.
+    // Iterate j from 0 until i. Here, j represents the first index of the substring we are checking.
+    //
+    // We will iterate over all substrings that end before index i. If we find one of these substrings is
+    // in wordDict and we can form the string prior to the substring, then dp[i] = true.
     public boolean wordBreak1(String s, Set<String> wordDict) {
         int n = s.length();
-        boolean[] dp = new boolean[n+1];
-        dp[n] = true;
-        for (int i = n - 1; i >= 0; --i) {
-            for (int j = i; j < n; ++j) {
-                if (wordDict.contains(s.substring(i,j+1)) && dp[j+1]) {
+        Set<String> words = new HashSet<>(wordDict);
+        boolean[] dp = new boolean[n + 1];
+        dp[0] = true;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && words.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
                 }
             }
         }
-        return dp[0];
+
+        return dp[n];
     }
     
     // Method 2: Memorized searching + DFS :- (This is less efficient than DP)

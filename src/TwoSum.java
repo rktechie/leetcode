@@ -43,19 +43,17 @@ public class TwoSum {
 	}
 	
 	//Better solution
-	public static int[] twoSum2(int[] numbers, int target) {
-        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
-        for (int i = 0; i < numbers.length; ++i) {
-            int b = target - numbers[i];
-            System.out.println("B value: " + b);
-            if (map.get(b) != null) {
-            	System.out.println("inside map: " + map.get(b));
-                return new int[]{map.get(b),i+1};
-            } else{
-            	System.out.println("outside map: " + b);
-            	map.put(numbers[i],i+1);
-            }
-        }
-        return null;
-    }
+	public static int[] twoSum2(int[] nums, int target) {
+		HashMap<Integer, Integer> map = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			int sum = target - nums[i];
+			if (map.containsKey(sum)) {
+				return new int[]{map.get(sum), i};
+			} else {
+				map.put(nums[i], i);
+			}
+		}
+
+		return null;
+	}
 }

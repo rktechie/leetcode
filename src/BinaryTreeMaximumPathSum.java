@@ -52,11 +52,13 @@ public class BinaryTreeMaximumPathSum {
 	private int maxPathDown(TreeNode node) {
 		if (node == null)
 			return 0;
-		// We do Math.max(0,...) because if the maxPathDown(left) or maxPathDown(right) is -ve, then we will not take that path which amounts to 0 in value.
+		// We do Math.max(0,...) because if the maxPathDown(left) or maxPathDown(right) is -ve,
+		// then we will not take that path which amounts to 0 in value.
 		int left = Math.max(0, maxPathDown(node.left));
 		int right = Math.max(0, maxPathDown(node.right));
-		maxValue = Math.max(maxValue, left + right + node.val);
-		
+		maxValue = Math.max(maxValue, left + right + node.val); // keep checking for maxValue at each stage
+
+		// as this can be a path of a bigger subtree, we can only go in either left or right direction so we take the max and return to the caller
 		return Math.max(left, right) + node.val;
 	}
 

@@ -21,7 +21,7 @@ public class MajorityElement {
             
             if (count > nums.length / 2)
                 return x;
-            hashMap.put(x, count + 1);
+            hashMap.put(x, count);
         }
         return -1;
     }

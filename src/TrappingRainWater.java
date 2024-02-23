@@ -30,23 +30,23 @@ public class TrappingRainWater {
 	 */
 	public int trap(int[] height) {
 		int left = 0;
-	    int right = height.length-1;
-	    int max = 0;
-	    int leftmax = Integer.MIN_VALUE; // leftMax represents the highest bar from left
-	    int rightmax = Integer.MIN_VALUE; // rightMax represents the highest bar from right
-	    while (left <= right) {
-	        leftmax = Math.max(leftmax, height[left]);
-	        rightmax = Math.max(rightmax, height[right]);
-	        if (leftmax < rightmax) { // how much water can current position trap depends on the shorter bar
-	            max += (leftmax - height[left]); // leftmax is smaller than rightmax, so the (leftmax-height[a]) water can be stored
-	            left++;
-	        } else {
-	            max += (rightmax - height[right]);
-	            right--;
-	        }
-	    }
-	    
-	    return max;
-    }
+		int right = height.length-1;
+		int max = 0;
+		int leftmax = Integer.MIN_VALUE; // leftMax represents the highest bar from left
+		int rightmax = Integer.MIN_VALUE; // rightMax represents the highest bar from right
+		while (left <= right) {
+				leftmax = Math.max(leftmax, height[left]);
+				rightmax = Math.max(rightmax, height[right]);
+				if (leftmax < rightmax) { // how much water can current position trap depends on the shorter bar
+						max += (leftmax - height[left]); // leftmax is smaller than rightmax, so the (leftmax-height[a]) water can be stored
+						left++;
+				} else {
+						max += (rightmax - height[right]);
+						right--;
+				}
+		}
+
+		return max;
+	}
 
 }

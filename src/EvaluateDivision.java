@@ -49,15 +49,15 @@ public class EvaluateDivision {
         for (int i = 0; i < values.length; i++) {
         	u = equations.get(i).get(0);
         	v = equations.get(i).get(1);
-            graph.putIfAbsent(u, new HashMap<>());
-            graph.putIfAbsent(v, new HashMap<>());
-            graph.get(u).put(v, values[i]);
-            graph.get(v).put(u, 1 / values[i]);
+          graph.putIfAbsent(u, new HashMap<>());
+          graph.putIfAbsent(v, new HashMap<>());
+          graph.get(u).put(v, values[i]);
+          graph.get(v).put(u, 1 / values[i]);
         }
         
         double[] result = new double[queries.size()];
         for (int i = 0; i < queries.size(); i++)
-            result[i] = dfs(queries.get(i).get(0), queries.get(i).get(1), 1, graph, new HashSet<>());
+          result[i] = dfs(queries.get(i).get(0), queries.get(i).get(1), 1, graph, new HashSet<>());
         
         return result;
     }

@@ -38,6 +38,12 @@ public class ThreeSum {
 	// array.
 	// Also we want to skip equal elements to avoid duplicates in the answer
 	// without making a set or smth like that.
+	//
+	// Time Complexity: O(n^2). while loop (binary search part of the code) is O(n), and we call it n times.
+	// Sorting the array takes O(nlogn), so overall complexity is O(nlogn+n^2).
+	// This is asymptotically equivalent to O(n^2).
+	//
+	// Space Complexity: from O(logn) to O(n), depending on the implementation of the sorting algorithm.
 	public static List<List<Integer>> threeSum(int[] nums) {
 		Arrays.sort(nums);
 		List<List<Integer>> res = new LinkedList<>();

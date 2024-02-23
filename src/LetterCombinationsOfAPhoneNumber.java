@@ -39,7 +39,8 @@ public class LetterCombinationsOfAPhoneNumber {
 		return result;
 	}
 	
-	// call the helper function recursively for each letter of each digit. The letters representing each digit is obtained from the hashmap.
+	// call the helper function recursively for each letter of each digit.
+	// The letters representing each digit is obtained from the hashmap.
 	// "i" is used to keep track of the the digit which has to be expanded. 
 	public static void letterCombinationsHelper(String digits, HashMap<String, String> hashMap, List<String> result, String lettersTillNow, int i) {
 		if (lettersTillNow.length() == digits.length()) {

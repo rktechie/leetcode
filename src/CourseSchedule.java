@@ -44,7 +44,9 @@ public class CourseSchedule {
 
 	/*
 	 * Solution 1: BFS Topological Sort (Kahn's algorithm)
-	 * 
+	 *
+	 * [0,1] means 0 -> 1 i.e to take course 0, first you have to take course 1 as pre req
+	 *
 	 * First, find a list of "start nodes" which have no incoming edges and insert them into a set S; 
 	 * at least one such node must exist in a non-empty acyclic graph.
 	 * 
@@ -56,46 +58,48 @@ public class CourseSchedule {
 	 * If we use adjacency list: O(E+V) 
 	 */
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-    	ArrayList<Integer>[] graph = new ArrayList[numCourses]; // we can either create a matrix or an adjacency list. In this solution, we are creating an adjacency list.
+        ArrayList<Integer>[] graph = new ArrayList[numCourses]; // we can either create a matrix or an adjacency list. In this solution, we are creating an adjacency list.
         int[] indegree = new int[numCourses];
         Queue<Integer> queue = new LinkedList<Integer>(); // Set of all nodes with no incoming edge
         int count = 0; // the total number of courses which can be completed without any problem
-        
+
         for (int i = 0; i < numCourses; i++)
-            graph[i] = new ArrayList();
-            
+            graph[i] = new ArrayList<>();
+
         for (int i = 0; i < prerequisites.length; i++) {
             indegree[prerequisites[i][1]]++; // if its u->v, then increment indegree for v.
-            graph[prerequisites[i][0]].add(prerequisites[i][1]); // if its u->v, then here we are adding outward edges for the node u 
+            graph[prerequisites[i][0]].add(prerequisites[i][1]); // if its u->v, then here we are adding outward edges for the node u
         }
-        
+
         for (int i = 0; i < indegree.length; i++) {
             if (indegree[i] == 0) { // if the node has no incoming edge then add it to the queue
                 queue.add(i);
                 count++;
             }
         }
-        
+
         while (!queue.isEmpty()) {
             int course = (int) queue.poll(); // remove a node from the queue (these nodes have no incoming edges)
             for (int i = 0; i < graph[course].size(); i++) { // keep removing edges e from the graph for the node
                 int pointer = (int) graph[course].get(i);
-                indegree[pointer]--;
+                indegree[pointer]--; // as we are removing the edge from node to pointer, we dec indegree count of pointer
                 if (indegree[pointer] == 0) { // if it has no other incoming edges, then add it to the queue
                     queue.add(pointer);
                     count++;
                 }
             }
         }
-        
+
         if (count == numCourses)
             return true;
-        else    
+        else
             return false; // graph has at least one cycle
     }
     
     /*
      * Solution 2: DFS
+     *
+     * [0,1] means 0 -> 1 i.e to take course 0, first you have to take course 1 as pre req
      * 
      * The algorithm loops through each node of the graph, in an arbitrary order, 
      * initiating a depth-first search that terminates when it hits any node that 
@@ -105,14 +109,14 @@ public class CourseSchedule {
      * dp array is used to prevent revisiting the nodes as well as to deal with cycles.
      */
     public boolean canFinish2(int numCourses, int[][] prerequisites) {
-        ArrayList[] graph = new ArrayList[numCourses]; // to create adjacency list
+        ArrayList<Integer>[] graph = new ArrayList[numCourses]; // to create adjacency list
         for (int i = 0; i < numCourses; i++)
-            graph[i] = new ArrayList();
+            graph[i] = new ArrayList<>();
             
         boolean[] visited = new boolean[numCourses];
         boolean[] dp = new boolean[numCourses];
         for (int i = 0; i < prerequisites.length; i++) {
-            graph[prerequisites[i][1]].add(prerequisites[i][0]); // note: (unlike above solution) here we create list of u's for v for u->v
+            graph[prerequisites[i][0]].add(prerequisites[i][1]);
         }
 
         for (int i = 0; i < numCourses; i++) { // must check every node. eg.[1,0],[0,1]
@@ -123,13 +127,13 @@ public class CourseSchedule {
         return true;
     }
 
-    private boolean dfs(ArrayList[] graph, boolean[] visited, int course, boolean[] dp){
+    private boolean dfs(ArrayList[] graph, boolean[] visited, int course, boolean[] dp) {
         if (visited[course])
             return dp[course];
         else
             visited[course] = true;
 
-        for (int i = 0; i < graph[course].size(); i++) {
+        for (int i = 0; i < graph[course].size(); i++) { // go through each of the pre reqs of the current course
             if (!dfs(graph, visited, (int)graph[course].get(i), dp)) {
                 dp[course] = false;
                 return false;

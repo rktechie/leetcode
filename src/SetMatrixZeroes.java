@@ -9,7 +9,8 @@ public class SetMatrixZeroes {
 
 	}
 
-	// First note down the rows and the columns where 0 had occurred. We do not need exact location, we just need the row number and the column number.
+	// First note down the rows and the columns where 0 had occurred. We do not need exact location,
+	// we just need the row number and the column number.
 	// Then set those rows and columns to 0.
 	public void setZeroes(int[][] matrix) {
 		boolean[] row = new boolean[matrix.length];

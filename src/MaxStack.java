@@ -57,7 +57,7 @@ public class MaxStack {
 
 	public void push(int x) {
 		int max = maxStack.isEmpty() ? x : maxStack.peek();
-		maxStack.push(max > x ? max : x);
+		maxStack.push(Math.max(max, x));
 		stack.push(x);
 	}
 

@@ -29,7 +29,7 @@ class BSTIterator {
      * @return whether we have a next smallest number
      */
     public boolean hasNext() {
-        if (stk.isEmpty() == true && node == null)
+        if (stk.isEmpty() && node == null)
             return false;
         return true;
     }
@@ -38,7 +38,7 @@ class BSTIterator {
      * @return the next smallest number
      */
     public int next() {
-        if (stk.isEmpty() == true && node == null)
+        if (stk.isEmpty() && node == null)
             return 0;
         while (node != null) {
             stk.push(node);

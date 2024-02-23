@@ -36,12 +36,15 @@ If you notice carefully in the flattened tree, each node's right child points to
 public class FlattenBinaryTreeToLinkedList {
 
     /*
-     * We keep going down the tree till we reach the node whose children are leafs or till the left of the left child of the parent is null.
+     * We keep going down the tree till we reach the node whose children are leafs or till the left
+     * of the left child of the parent is null.
      * 
-     * We then make the left child as the right child of the parent. And the original right child becomes the right child of the new right child.
+     * We then make the left child as the right child of the parent.
+     * And the original right child becomes the right child of the new right child.
      * 
-     * While shifting the left child as the right child, If the left child is not a single node, then we find the right most element of that left child,
-     * now the original right child will become the right child of this rightmost child.
+     * While shifting the left child as the right child, If the left child is not a single node,
+     * then we find the right most element of that left child, now the original right child will
+     * become the right child of this rightmost child.
      * 
      * Keep this example in your mind : [1,2,null,3]
      * If we don't find the rightmost child of the left child during shifting phase then the answer we get is: [1,null,2]
@@ -56,7 +59,7 @@ public class FlattenBinaryTreeToLinkedList {
                 TreeNode temp = root.left;
                 root.left = null;
                 TreeNode rightMost = temp;
-                while (rightMost != null && rightMost.right != null)
+                while (rightMost.right != null)
                     rightMost = rightMost.right;
                 rightMost.right = root.right;
                 root.right = temp;

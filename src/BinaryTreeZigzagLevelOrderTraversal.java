@@ -79,8 +79,9 @@ public class BinaryTreeZigzagLevelOrderTraversal {
                 temp.add(0, root.val);
             result.set(level, temp);
         }
-            zigzagLevelOrderHelper(root.left, result, level + 1);
-            zigzagLevelOrderHelper(root.right, result, level + 1);
+
+        zigzagLevelOrderHelper(root.left, result, level + 1);
+        zigzagLevelOrderHelper(root.right, result, level + 1);
     }
 
     class TreeNode {

@@ -31,8 +31,10 @@ public class Permutations {
 	}
 
 	// If the size of the current list is same as the length of nums that means we can return the current list.
-	// we maintain a string to track the indexes. indexes can be visited in random order so we cannot just simply use an int counter variable.
-	// after the recursive call we not only remove from the list the element we just added but also remove the index we just added from the indexes list. 
+	// we maintain a string to track the indexes. indexes can be visited in random order so we cannot just simply
+	// use an int counter variable.
+	// after the recursive call we not only remove from the list the element we just added but also
+	// remove the index we just added from the indexes list.
 	public void permuteHelper(int[] nums, List<List<Integer>> result, String indexesVisited, ArrayList<Integer> currentList) {
 		if (currentList.size() == nums.length) {
 			ArrayList<Integer> temp = new ArrayList<Integer>(currentList);

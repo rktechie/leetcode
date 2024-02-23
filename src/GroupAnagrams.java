@@ -30,9 +30,16 @@ public class GroupAnagrams {
 	}
 
 	/*
+	 * Approach 1: Categorize by Sorted String
 	 * Algorithm: Sort each word. So if two words are anagrams then after sorting
 	 * each word will have the same sequence. By this we will get all anagrams and
 	 * add them to a list.
+	 *
+	 * Time Complexity: O(NKlogK), where N is the length of strs, and K is the maximum length of a
+	 * string in strs. The outer loop has complexity O(N) as we iterate through each string.
+	 * Then, we sort each string in O(KlogK) time.
+	 *
+	 * Space Complexity: O(NK), the total information content stored in ans.
 	 */
 	public static List<List<String>> groupAnagrams(String[] strs) {
 		if (strs == null || strs.length == 0)
@@ -50,41 +57,36 @@ public class GroupAnagrams {
 	}
 
 	/*
-	 * Same as above but more verbose
+	 * Approach 2: Categorize by Count
+	 * We can transform each string "s" into a character count "count", consisting of 26 non-negative
+	 * integers representing the number of a's, b's, c's, etc. We use these counts as the basis for our hash map.
+	 *
+	 * In Java, the hashable representation of our count will be a string delimited with '#' characters.
+	 *
+	 * Time Complexity: O(NK), where N is the length of strs, and K is the maximum length of a string
+	 * in strs. Counting each string is linear in the size of the string, and we count every string.
+	 *
+	 * Space Complexity: O(NK), the total information content stored in ans.
 	 */
-	public static List<List<String>> groupAnagrams2(String[] strs) {
-		ArrayList<String> tempList = new ArrayList<String>();
-		HashMap<String, ArrayList<String>> hashMap = new HashMap<String, ArrayList<String>>();
-		List<List<String>> result = new ArrayList<List<String>>();
+	public List<List<String>> groupAnagrams2(String[] strs) {
+		if (strs.length == 0) return new ArrayList();
+		Map<String, List> ans = new HashMap<String, List>();
+		int[] count = new int[26];
+		for (String s : strs) {
+			Arrays.fill(count, 0);
+			for (char c : s.toCharArray())
+				count[c - 'a']++;
 
-		for (int i = 0; i < strs.length; i++) {
-			char[] stringChar = strs[i].toCharArray();
-			Arrays.sort(stringChar);
-			String str = new String(stringChar);
-			if (hashMap.containsKey(str)) {
-				tempList = hashMap.get(str);
-				tempList.add(strs[i]);
-				// Because the output should give the inner list sorted in lexicographical order.
-				tempList.sort(new Comparator<String>() {
-
-					@Override
-					public int compare(String o1, String o2) {
-						return o1.compareTo(o2);
-					}
-				});
-			} else {
-				ArrayList<String> list = new ArrayList<String>();
-				list.add(strs[i]);
-				hashMap.put(str, list);
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < 26; i++) {
+				sb.append('#');
+				sb.append(count[i]);
 			}
+			String key = sb.toString();
+			if (!ans.containsKey(key))
+				ans.put(key, new ArrayList<String>());
+			ans.get(key).add(s);
 		}
-
-		Iterator<Map.Entry<String, ArrayList<String>>> iterator = hashMap.entrySet().iterator();
-		while (iterator.hasNext()) {
-			Map.Entry<String, ArrayList<String>> entry = iterator.next();
-			result.add(entry.getValue());
-		}
-
-		return result;
+		return new ArrayList(ans.values());
 	}
 }

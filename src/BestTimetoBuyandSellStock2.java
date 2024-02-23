@@ -11,7 +11,7 @@ public class BestTimetoBuyandSellStock2 {
     public int maxProfit(int[] prices) {
         int res = 0;
         for (int i = 1; i < prices.length; ++i) {
-            res += Math.max(0, prices[i] - prices[i-1]);
+            res += Math.max(0, prices[i] - prices[i-1]); // basically add the difference between the consecutive numbers of the array if the second number is larger than the first one
         }
         return res;
     }

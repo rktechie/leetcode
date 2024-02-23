@@ -24,7 +24,7 @@ public class FindPeakElement {
         System.out.println(x);
     }
 
-    // Used Binary Search
+    // Used Binary Search - Time complexity : O(log2(n))
     public static int findPeakElement(int[] nums) {
         int left = 0, right = nums.length - 1, mid = 0;
         while (left < right) {

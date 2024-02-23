@@ -39,7 +39,7 @@ public class LongestConsecutiveSequence {
 	 * O(n + n) = O(n) time. All other computations occur in constant time, so the overall runtime is linear.
 	 * 
 	 * Space complexity : O(n)
-	 * In order to set up O(1) containment lookups, we allocate linear space for a hash table to store the O(n)O(n) numbers in nums
+	 * In order to set up O(1) containment lookups, we allocate linear space for a hash table to store the O(n) numbers in nums
 	 */
 	public int longestConsecutive(int[] nums) {
 		Set<Integer> num_set = new HashSet<Integer>();

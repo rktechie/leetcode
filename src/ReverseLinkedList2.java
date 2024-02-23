@@ -36,6 +36,8 @@ public class ReverseLinkedList2 {
 
 		if ((m == 0 && n == 0) || m > n || m == n)
 			return head;
+
+		// keep iterating till first points to previous of left (m) and last points to right (n)
 		while (true) {
 			if (i == m - 1)
 				first = current;
@@ -53,9 +55,11 @@ public class ReverseLinkedList2 {
 		current = first.next;
 		System.out.println("First: " + first.val);
 		System.out.println("Current:" + current.val);
+
+		// Iteratively reverse the nodes starting from left
 		while (current != end) {
 			temp = current.next;
-			if (previous == null) {
+			if (previous == null) { // first time -> disconnect left and attach it to end (i.e. next of right)
 				current.next = end;
 			} else {
 				current.next = previous;
@@ -63,6 +67,7 @@ public class ReverseLinkedList2 {
 			previous = current;
 			current = temp;
 		}
+
 		first.next = previous;
 
 		return head;

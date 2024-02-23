@@ -34,34 +34,41 @@ public class ReverseNodesInKGroups {
 
 	// This is my solution but it is incomplete. I'm trying to reverse the list in the inner while loop.
 	public static ListNode reverseKGroup(ListNode head, int k) {
-		ListNode tempHead = head;
-		int length = 0;
-		int sets = 0;
-		ListNode result = head;
-		ListNode currentNode = head;
-		ListNode previousNode = null;
-		ListNode nextNode = null;
-
-		while (tempHead != null) {
-			tempHead = tempHead.next;
-			length++;
+		ListNode begin;
+		if (head == null || head.next == null || k == 1) {
+			return head;
 		}
-		sets = length / k;
-		while ((sets--) != 0) {
-			int i = k;
-			while ((i--) != 0) {
-				nextNode = currentNode.next;
-				currentNode.next = previousNode;
-				if (previousNode == null)
-					head = currentNode;
-				previousNode = currentNode;
-				currentNode = nextNode;
+		ListNode dummyhead = new ListNode(-1);
+		dummyhead.next = head;
+		begin = dummyhead;
+		int i = 0;
+		while (head != null) {
+			i++;
+			if (i % k == 0) {
+				begin = reverse(begin, head.next);
+				head = begin.next;
+			} else {
+				head = head.next;
 			}
-			previousNode.next = currentNode;
-			System.out.println("PV: " + previousNode.val);
-			System.out.println("CV: " + currentNode.val);
 		}
-		return head;
+
+		return dummyhead.next;
+	}
+
+	public static ListNode reverse(ListNode begin, ListNode end) {
+		ListNode curr = begin.next;
+		ListNode next, first;
+		ListNode prev = begin;
+		first = curr;
+		while (curr != end) {
+			next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+		}
+		begin.next = prev;
+		first.next = curr;
+		return first;
 	}
 
 	static class ListNode {

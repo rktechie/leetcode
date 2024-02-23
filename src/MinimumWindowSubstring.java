@@ -24,8 +24,7 @@ public class MinimumWindowSubstring {
 	/*
 	 * NOTE: (VERY IMPORTANT) THIS IS A TEMPLATE TO SOLVE A LOT OF SUBSTRING PROBLEMS
 	 * For most substring problems, we are given a string and need to find a substring of it which satisfy some restrictions.
-	 * A general way is to use a hashmap assisted with two pointers. 
-	 * 
+	 * A general way is to use a hashmap assisted with two pointers.
 	 * 
 	 * 1. Use two pointers: start and end to represent a window.
 	 * 2. Move end to find a valid window.

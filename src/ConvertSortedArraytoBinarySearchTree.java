@@ -19,7 +19,7 @@ public class ConvertSortedArraytoBinarySearchTree {
             return null;
         if (start == end)
             return new TreeNode(nums[start]);
-        int mid = start + (end - start) / 2;
+        int mid = start + (end - start) / 2; // OR mid = (left + right) / 2
         TreeNode p = new TreeNode(nums[mid]);
         p.left = sortedArrayToBSTHelper(nums, start, mid - 1);
         p.right = sortedArrayToBSTHelper(nums, mid + 1, end);

@@ -56,7 +56,10 @@ public class PalindromeNumber {
 	    	rev = rev * 10 + x % 10;
 	    	x = x / 10;
 	    }
-	    return (x == rev || x == rev / 10); // this is a check for even and odd cases eg: (number 232 use x==rev/10) but (number 22 use x==rev)
+		// this is a check for even and odd cases eg:
+		// For example when the input is 12321, at the end of the while loop we get x = 12, revertedNumber = 123, since the middle digit doesn't matter in palidrome, we can simply get rid of it.
+		// but if the number is 22 use x==rev
+	    return (x == rev || x == rev / 10);
 	}
 
 }

@@ -56,6 +56,7 @@ public class InsertInterval {
 			result.add(intervals[i++]);
 		
 		// merge all overlapping intervals to one considering newInterval
+		// we compare intervals start with targets end
 		while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
 			newInterval = new int[] { // we could mutate newInterval here also
 					Math.min(newInterval[0], intervals[i][0]),

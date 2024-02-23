@@ -19,7 +19,7 @@ public class AllOOneDataStructure {
 	/*
 	 * Solution : Main idea is to maintain a list of Bucket's, each Bucket contains all keys with the same count.
 	 * 
-	 * Head and tail can ensure both getMaxKey() and getMaxKey() be done in O(1).
+	 * Head and tail can ensure both getMaxKey() and getMinKey() be done in O(1).
 	 * keyCountMap maintains the count of keys, countBucketMap provides O(1) access to a specific Bucket with given count. 
 	 * Deleting and adding a Bucket in the Bucket list cost O(1), so both inc() and dec() take strict O(1) time.
 	 */

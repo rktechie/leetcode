@@ -39,61 +39,91 @@ public class CloneGraph {
 
     }
 
-    /*
-     * Didn't understand the problem and the solution.
-     */
-    
+    private HashMap<Node, Node> visited = new HashMap<>();
+
+
     // Method 1: DFS
-    public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> hashMap = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-        return cloneGraphHelper(node, hashMap);
-    }
-
-    public UndirectedGraphNode cloneGraphHelper(UndirectedGraphNode node,
-            HashMap<UndirectedGraphNode, UndirectedGraphNode> hashMap) {
-        if (node == null)
-            return null;
-        if (hashMap.containsKey(node) == true)
-            return hashMap.get(node);
-
-        UndirectedGraphNode newNode = new UndirectedGraphNode(node.label);
-        hashMap.put(node, newNode);
-        for (UndirectedGraphNode temp : node.neighbors) {
-            newNode.neighbors.add(cloneGraphHelper(temp, hashMap));
+    // Hashmap contains key = original node ; value = cloned node
+    //
+    // Time Complexity: O(N+M), where N is a number of nodes (vertices) and MMM is a number of edges.
+    // Space Complexity: O(N). This space is occupied by the visited hash map and in addition to that,
+    // space would also be occupied by the recursion stack which would be equal to O(H) where H is the height of the graph.
+    public Node cloneGraph(Node node) {
+        if (node == null) {
+            return node;
         }
 
-        return newNode;
+        // If the node was already visited before.
+        // Return the clone from the visited dictionary.
+        if (visited.containsKey(node)) {
+            return visited.get(node);
+        }
+
+        // Create a clone for the given node.
+        // Note that we don't have cloned neighbors as of now, hence [].
+        Node cloneNode = new Node(node.val, new ArrayList<>());
+        // The key is original node and value being the clone node.
+        visited.put(node, cloneNode);
+
+        // Iterate through the neighbors to generate their clones
+        // and prepare a list of cloned neighbors to be added to the cloned node.
+        for (Node neighbor: node.neighbors) {
+            cloneNode.neighbors.add(cloneGraph(neighbor));
+        }
+        return cloneNode;
     }
 
     // Method 2: BFS
-    public UndirectedGraphNode cloneGraph2(UndirectedGraphNode node) {
-        HashMap<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<UndirectedGraphNode, UndirectedGraphNode>();
-        Queue<UndirectedGraphNode> queue = new LinkedList<UndirectedGraphNode>();
-        if (node == null)
-            return null;
-        queue.offer(node);
-        map.put(node, new UndirectedGraphNode(node.label));
-        while (queue.isEmpty() == false) {
-            UndirectedGraphNode cur = queue.poll();
-            for (UndirectedGraphNode neighbor : cur.neighbors) {
-                if (map.containsKey(neighbor) == false) {
-                    UndirectedGraphNode newnode = new UndirectedGraphNode(neighbor.label);
-                    map.put(neighbor, newnode);
-                    queue.offer(neighbor);
+    // Hashmap contains key = original node ; value = cloned node
+    //
+    // Time Complexity : O(N+M), where N is a number of nodes (vertices) and M is a number of edges.
+    // Space Complexity : O(N). This space is occupied by the visited dictionary and in addition to that,
+    // space would also be occupied by the queue would be equal to O(W) where W is the width of the graph
+    public Node cloneGraph2(Node node) {
+        if (node == null) {
+            return node;
+        }
+
+        // Hash map to save the visited node and it's respective clone
+        // as key and value respectively. This helps to avoid cycles.
+        HashMap<Node, Node> visited = new HashMap();
+
+        // Put the first node in the queue
+        LinkedList<Node> queue = new LinkedList<Node> ();
+        queue.add(node);
+        // Clone the node and put it in the visited dictionary.
+        visited.put(node, new Node(node.val, new ArrayList()));
+
+        // Start BFS traversal
+        while (!queue.isEmpty()) {
+            // Pop a node say "n" from the from the front of the queue.
+            Node n = queue.remove();
+            // Iterate through all the neighbors of the node "n"
+            for (Node neighbor: n.neighbors) {
+                if (!visited.containsKey(neighbor)) {
+                    // Clone the neighbor and put in the visited, if not present already
+                    visited.put(neighbor, new Node(neighbor.val, new ArrayList()));
+                    // Add the newly encountered node to the queue.
+                    queue.add(neighbor);
                 }
-                map.get(cur).neighbors.add(map.get(neighbor));
+                // Add the clone of the neighbor to the neighbors of the clone node "n".
+                visited.get(n).neighbors.add(visited.get(neighbor));
             }
         }
-        return map.get(node);
+
+        // Return the clone of the node from visited.
+        return visited.get(node);
     }
 
-    class UndirectedGraphNode {
-        int label;
-        List<UndirectedGraphNode> neighbors;
+    class Node {
+        public int val;
+        public List<Node> neighbors;
 
-        UndirectedGraphNode(int x) {
-            label = x;
-            neighbors = new ArrayList<UndirectedGraphNode>();
+        public Node() {}
+
+        public Node(int _val,List<Node> _neighbors) {
+            val = _val;
+            neighbors = _neighbors;
         }
-    };
+    }
 }

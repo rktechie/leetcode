@@ -26,6 +26,13 @@ public class ConstructBinaryTreefromInorderandPostorderTraversal {
     int[] postorder;
     int p;
 
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+        this.p = postorder.length - 1;
+        this.inorder = inorder;
+        this.postorder = postorder;
+        return buildTree(0, inorder.length);
+    }
+
     TreeNode buildTree(int start, int end) {
         if (start >= end)
             return null;
@@ -39,13 +46,6 @@ public class ConstructBinaryTreefromInorderandPostorderTraversal {
         root.right = buildTree(i + 1, end);
         root.left = buildTree(start, i);
         return root;
-    }
-
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
-        this.p = postorder.length - 1;
-        this.inorder = inorder;
-        this.postorder = postorder;
-        return buildTree(0, inorder.length);
     }
 
     class TreeNode {

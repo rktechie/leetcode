@@ -15,7 +15,6 @@ public class Sqrt {
 	// Note: is x/mid > mid, then that means we need to reduce the value of x/mid, which means we need to increase mid.
 	// So if we reduce high, then the mid value will also reduce. Therefore we increase the low value in that situation.
 	public int mySqrt(int x) {
-		int left = 1;
 		if (x < 2)
 			return x;
 		int low = 1;
